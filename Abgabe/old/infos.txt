@@ -1,0 +1,5 @@
+Architektur: ARM1176JZF-S
+manual: http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0301h/I1022730.html
+
+
+ARM Architektur: describes how the internal hardware is connected and which instruction set(assembler operations) it uses

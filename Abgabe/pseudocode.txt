@@ -1,0 +1,42 @@
+main()
+{
+    unsigned int timer;
+    unsigned int morser;
+    unsigned int dot_length = 200000;
+    unsigned int* gpio = 0x20200000;
+    gpio[1] |= 0x40000;       
+    while(1)
+    {
+        //Short Blinnking 3times
+        for(morser = 0; morser <= 2; morser++)
+        {
+            gpio[10] = 0x10000; //Turn on LED
+            for(timer = 0; timer <= dot_length; timer++);
+            //LED On for duration of one “dot_length” unit
+            gpio[7] = 0x10000; //Turn off LED
+            for(timer = 0; timer <= dot_length; timer++);
+            //LED Off for duration of one “dot_length” unit
+        }
+        for(timer = 0; timer <= 3*dot_length; timer++); 
+        //Wait 3 dot_length units (break between characters)
+        for(morser = 0; morser <= 2; morser++)
+        {
+            gpio[10] = 0x10000; //Turn on LED
+            for(timer = 0; timer <= 3*dot_length; timer++);
+            //LED On for duration of three “dot_length” units
+            gpio[7] = 0x10000; //Turn off LED
+            for(timer = 0; timer <= dot_length; timer++);
+        }
+        for(timer = 0; timer <= 3*dot_length; timer++);
+        //Wait 3 dot_length units (break between characters)
+        for(morser = 0; morser <= 2; morser++)
+        {
+            gpio[10] = 0x10000; //Turn on LED
+            for(timer = 0; timer <= dot_length; timer++);
+            gpio[7] = 0x10000; //Turn off LED
+            for(timer = 0; timer <= dot_length; timer++);
+        }
+        for(timer = 0; timer <= 7*dot_length; timer++); 
+        //Space between words in morse code is 7 dot_length units
+    }
+}
